@@ -4,27 +4,31 @@
 #         self.val = val
 #         self.next = next
 
-# [0, 1, 2] -> [2, 1, 0]
-# prev = none (0)
-# temp = curr.next (1)
-# curr.next = prev
-# prev = curr
-# curr = temp
-# 
-# put 
-
-
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        curr = head
-        prev = None
-        while curr:
-            tmp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = tmp
-        return prev
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        prev = dummy
+        while list1 and list2:
+            if list1.val <= list2.val:
+                prev.next = list1
+                prev = prev.next
+                list1 = list1.next
+            else:
+                prev.next = list2
+                prev = prev.next
+                list2 = list2.next
+        while list1:
+            prev.next = list1
+            prev = prev.next
+            list1 = list1.next
+        while list2:
+            prev.next = list2
+            prev = prev.next
+            list2 = list2.next
+        return dummy.next
+                
 
-            
 
+        
 
+        
